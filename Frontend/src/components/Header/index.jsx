@@ -1,40 +1,44 @@
-import Button from '@mui/material/Button';
+import React from "react";
+import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
 
-import styles from './Header.module.scss';
-import Container from '@mui/material/Container';
+import styles from "./Header.module.scss";
+import Container from "@mui/material/Container";
 
 export const Header = () => {
-  const isAuth = false; // Variable que indica si el usuario está autenticado
+  const isAuth = false;
 
-  const onClickLogout = () => {
-    // Función que se ejecuta cuando se hace clic en el botón de "Salir/Logout"
-  };
+  const onClickLogout = () => {};
 
   return (
     <div className={styles.root}>
       <Container maxWidth="lg">
         <div className={styles.inner}>
-          <a className={styles.logo} href="/">
-            <div>TRAVELLERS BLOG</div>
-          </a>
+          <Link className={styles.logo} to="/">
+            <div>ARCHAKOV BLOG</div>
+          </Link>
           <div className={styles.buttons}>
-            {isAuth ? ( // Si el usuario está autenticado
+            {isAuth ? (
               <>
-                <a href="/posts/create">
-                  <Button variant="contained">Crea un artículo</Button>
-                </a>
-                <Button onClick={onClickLogout} variant="contained" color="error">
-                  Salir
+                <Link to="/posts/create">
+                  <Button variant="contained">Написать статью</Button>
+                </Link>
+                <Button
+                  onClick={onClickLogout}
+                  variant="contained"
+                  color="error"
+                >
+                  Выйти
                 </Button>
               </>
-            ) : ( // Si el usuario no está autenticado
+            ) : (
               <>
-                <a href="/login">
-                  <Button variant="outlined">Iniciar sesión</Button>
-                </a>
-                <a href="/register">
-                  <Button variant="contained">Crear cuenta</Button>
-                </a>
+                <Link to="/login">
+                  <Button variant="outlined">Войти</Button>
+                </Link>
+                <Link to="/register">
+                  <Button variant="contained">Создать аккаунт</Button>
+                </Link>
               </>
             )}
           </div>

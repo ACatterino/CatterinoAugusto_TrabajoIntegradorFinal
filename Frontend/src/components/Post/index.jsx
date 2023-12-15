@@ -25,26 +25,32 @@ export const Post = ({
   isLoading,
   isEditable,
 }) => {
+  // Mostrar un esqueleto de carga si los datos están cargando
   if (isLoading) {
     return <PostSkeleton />;
   }
 
+  // Función para manejar la eliminación del artículo
   const onClickRemove = () => {};
 
   return (
     <div className={clsx(styles.root, { [styles.rootFull]: isFullPost })}>
+      {/* Botones de edición si el artículo es editable */}
       {isEditable && (
         <div className={styles.editButtons}>
+          {/* Enlace para editar el artículo */}
           <Link to={`/posts/${_id}/edit`}>
             <IconButton color="primary">
               <EditIcon />
             </IconButton>
           </Link>
+          {/* Botón para eliminar el artículo */}
           <IconButton onClick={onClickRemove} color="secondary">
             <DeleteIcon />
           </IconButton>
         </div>
       )}
+      {/* Imagen del artículo, si está disponible */}
       {imageUrl && (
         <img
           className={clsx(styles.image, { [styles.imageFull]: isFullPost })}
@@ -53,19 +59,26 @@ export const Post = ({
         />
       )}
       <div className={styles.wrapper}>
+        {/* Información del usuario y fecha de creación del artículo */}
         <UserInfo {...user} additionalText={createdAt} />
         <div className={styles.indention}>
+          {/* Título del artículo */}
           <h2 className={clsx(styles.title, { [styles.titleFull]: isFullPost })}>
+            {/* Enlace al artículo completo si es un resumen */}
             {isFullPost ? title : <Link to={`/posts/${_id}`}>{title}</Link>}
           </h2>
+          {/* Lista de etiquetas del artículo */}
           <ul className={styles.tags}>
             {tags.map((name) => (
               <li key={name}>
+                {/* Enlace a la página de etiquetas */}
                 <Link to={`/tag/${name}`}>#{name}</Link>
               </li>
             ))}
           </ul>
+          {/* Contenido del artículo */}
           {children && <div className={styles.content}>{children}</div>}
+          {/* Detalles del artículo, como recuento de vistas y comentarios */}
           <ul className={styles.postDetails}>
             <li>
               <EyeIcon />

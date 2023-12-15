@@ -2,42 +2,49 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 
-import styles from "./Header.module.scss";
+import styles from "./Header.module.scss";  // Estilos del módulo
 import Container from "@mui/material/Container";
 
 export const Header = () => {
-  const isAuth = false;
+  const isAuth = false; // Indica si el usuario está autenticado
 
-  const onClickLogout = () => {};
+  const onClickLogout = () => {
+    // Función para manejar el clic en el botón de salir
+  };
 
   return (
     <div className={styles.root}>
       <Container maxWidth="lg">
         <div className={styles.inner}>
+          {/* Enlace al inicio del blog */}
           <Link className={styles.logo} to="/">
-            <div>ARCHAKOV BLOG</div>
+            <div>VIAJANDO POR EL MUNDO</div>
           </Link>
+
+          {/* Botones de autenticación */}
           <div className={styles.buttons}>
             {isAuth ? (
+              /* Si el usuario está autenticado */
               <>
                 <Link to="/posts/create">
-                  <Button variant="contained">Написать статью</Button>
+                  <Button variant="contained">Escribir artículo</Button>
                 </Link>
                 <Button
                   onClick={onClickLogout}
                   variant="contained"
                   color="error"
                 >
-                  Выйти
+                  Salir
                 </Button>
               </>
             ) : (
+              /* Si el usuario no está autenticado */
               <>
                 <Link to="/login">
-                  <Button variant="outlined">Войти</Button>
+                  <Button variant="outlined">Iniciar sesión</Button>
                 </Link>
                 <Link to="/register">
-                  <Button variant="contained">Создать аккаунт</Button>
+                  <Button variant="contained">Crear cuenta</Button>
                 </Link>
               </>
             )}
@@ -47,3 +54,4 @@ export const Header = () => {
     </div>
   );
 };
+

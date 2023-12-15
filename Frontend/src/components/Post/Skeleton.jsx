@@ -1,18 +1,17 @@
+import React from "react";
 import Stack from "@mui/material/Stack";
 import Skeleton from "@mui/material/Skeleton";
 
 import styles from "./Post.module.scss";
 
-// Definición del componente funcional PostSkeleton
 export const PostSkeleton = () => {
   return (
-    // Contenedor principal del esqueleto
+    // Contenedor del esqueleto
     <div className={styles.skeleton}>
-      {/* Stack para alinear los elementos verticalmente con un espacio específico */}
+      {/* Apilamiento de elementos con espacio entre ellos */}
       <Stack spacing={1}>
-        {/* Esqueleto rectangular para la imagen del post */}
+        {/* Esqueleto rectangular para la imagen del artículo */}
         <Skeleton variant="rectangular" width="100%" height={300} />
-
         {/* Contenido del esqueleto */}
         <div className={styles.skeletonContent}>
           {/* Sección de información del usuario */}
@@ -24,19 +23,19 @@ export const PostSkeleton = () => {
               height={40}
               style={{ marginRight: 10 }}
             />
-            {/* Detalles del usuario (nombre y texto adicional) */}
+            {/* Detalles del usuario en el esqueleto */}
             <div className={styles.skeletonUserDetails}>
+              {/* Esqueleto de texto para el nombre del usuario */}
               <Skeleton variant="text" width={60} height={20} />
+              {/* Esqueleto de texto para detalles adicionales del usuario */}
               <Skeleton variant="text" width={100} height={15} />
             </div>
           </div>
-
-          {/* Sección de información del post */}
+          {/* Sección de información del artículo */}
           <div className={styles.skeletonInfo}>
-            {/* Esqueleto de texto para el título del post */}
+            {/* Esqueleto de texto para el título del artículo */}
             <Skeleton variant="text" width="80%" height={45} />
-
-            {/* Sección de etiquetas del post */}
+            {/* Sección de etiquetas del artículo */}
             <div className={styles.skeletonTags}>
               {/* Esqueleto de texto para cada etiqueta */}
               <Skeleton variant="text" width={40} height={30} />
@@ -49,3 +48,4 @@ export const PostSkeleton = () => {
     </div>
   );
 };
+

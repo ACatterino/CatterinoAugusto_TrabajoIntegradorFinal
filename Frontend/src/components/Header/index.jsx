@@ -1,40 +1,51 @@
-import Button from '@mui/material/Button';
+import React from "react";
+import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
 
-import styles from './Header.module.scss';
-import Container from '@mui/material/Container';
+import styles from "./Header.module.scss";  // Estilos del módulo
+import Container from "@mui/material/Container";
 
 export const Header = () => {
-  const isAuth = false; // Variable que indica si el usuario está autenticado
+  const isAuth = false; // Indica si el usuario está autenticado
 
   const onClickLogout = () => {
-    // Función que se ejecuta cuando se hace clic en el botón de "Salir/Logout"
+    // Función para manejar el clic en el botón de salir
   };
 
   return (
     <div className={styles.root}>
       <Container maxWidth="lg">
         <div className={styles.inner}>
-          <a className={styles.logo} href="/">
-            <div>TRAVELLERS BLOG</div>
-          </a>
+          {/* Enlace al inicio del blog */}
+          <Link className={styles.logo} to="/">
+            <div>VIAJANDO POR EL MUNDO</div>
+          </Link>
+
+          {/* Botones de autenticación */}
           <div className={styles.buttons}>
-            {isAuth ? ( // Si el usuario está autenticado
+            {isAuth ? (
+              /* Si el usuario está autenticado */
               <>
-                <a href="/posts/create">
-                  <Button variant="contained">Crea un artículo</Button>
-                </a>
-                <Button onClick={onClickLogout} variant="contained" color="error">
+                <Link to="/posts/create">
+                  <Button variant="contained">Escribir artículo</Button>
+                </Link>
+                <Button
+                  onClick={onClickLogout}
+                  variant="contained"
+                  color="error"
+                >
                   Salir
                 </Button>
               </>
-            ) : ( // Si el usuario no está autenticado
+            ) : (
+              /* Si el usuario no está autenticado */
               <>
-                <a href="/login">
+                <Link to="/login">
                   <Button variant="outlined">Iniciar sesión</Button>
-                </a>
-                <a href="/register">
+                </Link>
+                <Link to="/register">
                   <Button variant="contained">Crear cuenta</Button>
-                </a>
+                </Link>
               </>
             )}
           </div>
@@ -43,3 +54,4 @@ export const Header = () => {
     </div>
   );
 };
+

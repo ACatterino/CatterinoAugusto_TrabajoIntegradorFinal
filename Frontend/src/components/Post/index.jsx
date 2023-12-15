@@ -1,4 +1,5 @@
-import PropTypes from 'prop-types';
+import React from 'react';
+import { Link } from "react-router-dom";
 import clsx from 'clsx';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Clear';
@@ -10,7 +11,6 @@ import styles from './Post.module.scss';
 import { UserInfo } from '../UserInfo';
 import { PostSkeleton } from './Skeleton';
 
-// Definición del componente funcional Post
 export const Post = ({
   _id,
   title,
@@ -25,33 +25,32 @@ export const Post = ({
   isLoading,
   isEditable,
 }) => {
-  // Renderizar un esqueleto mientras se carga la información del post
+  // Mostrar un esqueleto de carga si los datos están cargando
   if (isLoading) {
     return <PostSkeleton />;
   }
 
-  // Función que se ejecuta al hacer clic en el botón de eliminar
+  // Función para manejar la eliminación del artículo
   const onClickRemove = () => {};
 
   return (
     <div className={clsx(styles.root, { [styles.rootFull]: isFullPost })}>
-      {/* Botones de edición si el post es editable */}
+      {/* Botones de edición si el artículo es editable */}
       {isEditable && (
         <div className={styles.editButtons}>
-          {/* Enlace para editar el post */}
-          <a href={`/posts/${_id}/edit`}>
+          {/* Enlace para editar el artículo */}
+          <Link to={`/posts/${_id}/edit`}>
             <IconButton color="primary">
               <EditIcon />
             </IconButton>
-          </a>
-          {/* Botón para eliminar el post */}
+          </Link>
+          {/* Botón para eliminar el artículo */}
           <IconButton onClick={onClickRemove} color="secondary">
             <DeleteIcon />
           </IconButton>
         </div>
       )}
-
-      {/* Imagen del post si está disponible */}
+      {/* Imagen del artículo, si está disponible */}
       {imageUrl && (
         <img
           className={clsx(styles.image, { [styles.imageFull]: isFullPost })}
@@ -59,32 +58,27 @@ export const Post = ({
           alt={title}
         />
       )}
-
-      {/* Contenedor principal del post */}
       <div className={styles.wrapper}>
-        {/* Detalles del usuario y fecha de creación */}
+        {/* Información del usuario y fecha de creación del artículo */}
         <UserInfo {...user} additionalText={createdAt} />
-
-        {/* Contenido del post */}
         <div className={styles.indention}>
-          {/* Título del post (puede ser un enlace si no es un post completo) */}
+          {/* Título del artículo */}
           <h2 className={clsx(styles.title, { [styles.titleFull]: isFullPost })}>
-            {isFullPost ? title : <a href={`/posts/${_id}`}>{title}</a>}
+            {/* Enlace al artículo completo si es un resumen */}
+            {isFullPost ? title : <Link to={`/posts/${_id}`}>{title}</Link>}
           </h2>
-
-          {/* Lista de etiquetas asociadas al post */}
+          {/* Lista de etiquetas del artículo */}
           <ul className={styles.tags}>
             {tags.map((name) => (
               <li key={name}>
-                <a href={`/tag/${name}`}>#{name}</a>
+                {/* Enlace a la página de etiquetas */}
+                <Link to={`/tag/${name}`}>#{name}</Link>
               </li>
             ))}
           </ul>
-
-          {/* Contenido adicional del post (puede ser un componente React) */}
+          {/* Contenido del artículo */}
           {children && <div className={styles.content}>{children}</div>}
-
-          {/* Detalles adicionales del post: vistas y cantidad de comentarios */}
+          {/* Detalles del artículo, como recuento de vistas y comentarios */}
           <ul className={styles.postDetails}>
             <li>
               <EyeIcon />
@@ -100,23 +94,3 @@ export const Post = ({
     </div>
   );
 };
-
-// Definir PropTypes para el componente Post
-Post.propTypes = {
-  _id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  createdAt: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string,
-  user: PropTypes.shape({
-    avatarUrl: PropTypes.string,
-    fullName: PropTypes.string.isRequired,
-  }).isRequired,
-  viewsCount: PropTypes.number.isRequired,
-  commentsCount: PropTypes.number.isRequired,
-  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
-  children: PropTypes.node,
-  isFullPost: PropTypes.bool.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  isEditable: PropTypes.bool.isRequired,
-};
-

@@ -53,7 +53,7 @@ Esta aplicación de blog FullStack está creada utilizando el Stack MERN (MongoD
 
 ![Home Page](https://res.cloudinary.com/dq4gkweh3/image/upload/v1702687229/a82ee7d179e58e9942a189cc7bb71074_e31kcc.jpg)
 
-![Post Detail](https://res.cloudinary.com/dq4gkweh3/image/upload/v1702687231/localhost_3000_posts_undefined_hdkl5u.png)
+![Post Detail](https://res.cloudinary.com/dq4gkweh3/image/upload/v1702688514/localhost_3000_posts_undefined_4_ofuzu9.png)
 
 ![Register Page](https://res.cloudinary.com/dq4gkweh3/image/upload/v1702687226/localhost_3000_posts_undefined_3_jemzo0.png)
 

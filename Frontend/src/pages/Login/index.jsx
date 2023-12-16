@@ -19,7 +19,7 @@ export const Login = () => {
       <TextField
         className={styles.field}
         label="Correo electrónico"
-        error  // Indica que hay un error en la entrada
+        //error  || Indica que hay un error en la entrada
         helperText="Correo electrónico incorrecto"  // Mensaje de error
         fullWidth  // Ocupa el ancho completo del contenedor
       />
